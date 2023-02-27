@@ -45,7 +45,9 @@ It is not fully compatible, but it similar.
 
 
 class EchoMiddleware:
-    def __init__(self, app, environment_ignore_prefixes=("wsgi.", "uwsgi.", "werkzeug.")):
+    def __init__(
+        self, app, environment_ignore_prefixes=("wsgi.", "uwsgi.", "werkzeug.")
+    ):
         self.app = app
         self.environment_ignore_prefixes = environment_ignore_prefixes
 
@@ -62,7 +64,9 @@ class EchoMiddleware:
                 "query": {key: value for key, value in request.args.lists()},
                 "cookies": {key: value for key, value in request.cookies.lists()},
                 "body": request.data.decode(),
-                "headers": {header.lower(): value for header, value in request.headers.items()},
+                "headers": {
+                    header.lower(): value for header, value in request.headers.items()
+                },
             },
             "environment": {
                 key: value
@@ -74,13 +78,12 @@ class EchoMiddleware:
         return response(environ, start_response)
 
 
-
 def create_app():
     app = flask.Flask(__name__)
     app.wsgi_app = EchoMiddleware(app.wsgi_app)
     return app
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     app = create_app()
     app.run()

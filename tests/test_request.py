@@ -1,32 +1,3 @@
-import pytest
-
-from wsgi_echo_server import create_app
-
-
-@pytest.fixture
-def app():
-    app = create_app()
-    app.config.update({
-        "TESTING": True,
-    })
-    yield app
-
-
-@pytest.fixture
-def client(app):
-    return app.test_client()
-
-
-@pytest.fixture
-def runner(app):
-    return app.test_cli_runner()
-
-
-@pytest.fixture
-def mock_hostname(mocker):
-    mocker.patch("platform.node", return_value="mockedhostname")
-
-
 def test_request(client, mock_hostname):
     response = client.get("/").json
     assert response == {
@@ -58,5 +29,5 @@ def test_request(client, mock_hostname):
                 "user-agent": "werkzeug/2.2.3",
             },
             "query": {},
-        }
+        },
     }
