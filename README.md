@@ -11,6 +11,7 @@ docker run -e "WSGI_PORT=9000" ghcr.io/buserbrasil/wsgi-echo-server
 
 ## Response
 
+```
 {
     "environment": {
         "PATH_INFO": "/",
@@ -40,3 +41,4 @@ docker run -e "WSGI_PORT=9000" ghcr.io/buserbrasil/wsgi-echo-server
         "query": {}
     }
 }
+```
