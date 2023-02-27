@@ -25,6 +25,9 @@ pytest-ruff = "^0.0.3"
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"
 
+[tool.poetry-dynamic-versioning]
+enable = true
+
 [tool.pytest.ini_options]
 addopts = "--capture=no --cov --cov-report term --cov-report xml --ruff --black"
 filterwarnings = [
