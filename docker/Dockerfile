@@ -1,11 +1,15 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
-RUN apt update \
-    && apt install -y gcc \
-    && pip install flask uwsgi \
-    && rm -rf /var/lib/apt/lists/*
+RUN \
+    apk add --no-cache uwsgi-python3 \
+    && pip install poetry
 
-COPY echo.py entrypoint.sh .
+COPY pyproject.toml .
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-root --only=main
+
+COPY wsgi_echo_server.py .
+COPY docker/entrypoint.sh /usr/bin/
 
 ENV HTTP_PORT= WSGI_PORT=
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
