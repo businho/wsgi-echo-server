@@ -6,7 +6,7 @@ A wsgi and http echo server.
 ## How to use
 
 ```shell
-docker run -e "WSGI_PORT=9000" ghcr.io/buserbrasil/wsgi-echo-server
+docker run -e "UWSGI_SOCKET=:9000" ghcr.io/buserbrasil/wsgi-echo-server
 ```
 
 ## Response

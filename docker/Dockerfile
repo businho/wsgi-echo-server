@@ -20,5 +20,4 @@ RUN poetry config virtualenvs.in-project true \
 
 COPY docker/entrypoint.sh wsgi_echo_server.py ./
 
-ENV HTTP_PORT= WSGI_PORT=
 ENTRYPOINT ["./entrypoint.sh"]
