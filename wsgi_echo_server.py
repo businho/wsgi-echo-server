@@ -84,6 +84,7 @@ def create_app():
     return app
 
 
+application = create_app()
+
 if __name__ == "__main__":  # pragma: no cover
-    app = create_app()
-    app.run()
+    application.run()

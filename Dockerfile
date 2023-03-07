@@ -18,6 +18,6 @@ COPY pyproject.toml .
 RUN poetry config virtualenvs.in-project true \
     && poetry install --no-root --only=main
 
-COPY docker/entrypoint.sh wsgi_echo_server.py ./
+COPY wsgi_echo_server.py ./
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["uwsgi", "--module=wsgi_echo_server", "--virtualenv=.venv", "--uid=nobody", "--gid=nobody"]

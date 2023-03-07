@@ -6,6 +6,20 @@ A wsgi and http echo server.
 ## How to use
 
 ```shell
+pip install wsgi-echo-server
+
+# Running with wsgi socket
+UWSGI_SOCKET=:9000 uwsgi --module wsgi_echo_server
+
+# Running with http socket
+UWSGI_HTTP_SOCKET=:9001 uwsgi --module wsgi_echo_server
+
+# Running with wsgi and http socket
+UWSGI_SOCKET=:9000 UWSGI_HTTP_SOCKET=:9001 uwsgi --module wsgi_echo_server
+```
+There is a docker image ready to use:
+
+```shell
 docker run -e "UWSGI_SOCKET=:9000" ghcr.io/buserbrasil/wsgi-echo-server
 ```
 
